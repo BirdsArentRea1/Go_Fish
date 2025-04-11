@@ -1,9 +1,12 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <ctime>
 using namespace std;
 
 int main() {
+    srand(time(NULL));
+
     string suits[] = { "Hearts", "Clubs", "Diamonds", "Spades" };
     string ranks[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
 
