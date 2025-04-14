@@ -32,19 +32,19 @@ int main() {
     string deck[52];
     int index = 0;
 
-    // Create deck
+    // create deck
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 13; j++) {
             deck[index++] = ranks[j] + " of " + suits[i];
         }
     }
 
-    // Shuffle deck
+    // shuffle deck
     random_shuffle(&deck[0], &deck[52]);
 
    
 
-    // Display shuffled deck
+    // display shuffled deck
     for (int i = 0; i < 52; i++) {
         cout << deck[i] << endl;
     }
@@ -57,18 +57,19 @@ int main() {
         ComputerHand[i] = "empty";
     }
 
-    // Give player 5 cards
+    // give player 5 cards
     for (int i = 0; i < 5; i++) {
         PlayerHand[i] = deck[i];
         deck[i] = "empty";
     }
 
-    // Give computer 5 cards
+    // give computer 5 cards
     for (int i = 0; i < 5; i++) {
         ComputerHand[i] = deck[i];
         deck[i] = "empty";
     }
 
+    // turns
     cout << "Welcome to Go Fish!" << endl << endl;
     while (PlayerScore + ComputerScore < 13) {
         cout << endl << endl << endl << "************************************************************" << endl;
@@ -79,6 +80,28 @@ int main() {
         cout << "The scores are You: " << PlayerScore << ", Computer: " << ComputerScore << endl << endl;
         system("pause");
         cout << endl << endl;
+
+        switch (turn) {
+
+        // print hands    
+        case player:
+            cout << "Your hand: " << endl;
+            for (int i = 0; i < 52; i++) {
+                if (PlayerHand[i].compare("empty") != 0)
+                    cout << PlayerHand[i] << endl;
+            }
+
+            break;
+
+        case computer:
+            cout << "computer hand: " << endl;
+            for (int i = 0; i < 52; i++) {
+                if (PlayerHand[i].compare("empty") != 0)
+                    cout << ComputerHand[i] << endl;
+            }
+
+            break;
+        }
     }
 
     return 0;
