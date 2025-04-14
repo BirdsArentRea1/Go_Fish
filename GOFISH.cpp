@@ -44,10 +44,12 @@ int main() {
 
    
 
-    // display shuffled deck
+    // display shuffled deck 
+    /*
     for (int i = 0; i < 52; i++) {
         cout << deck[i] << endl;
-    }
+    } */
+    
 
     // create hands
     string PlayerHand[52];
@@ -89,10 +91,30 @@ int main() {
             sort(ComputerHand, ComputerHand + 51);
             cout << "Your hand: " << endl;
             for (int i = 0; i < 52; i++) {
-                if (PlayerHand[i].at(0) != 'e')
-                    cout << PlayerHand[i] << endl;
-            }
+                quads = 0;
 
+                for (int j = i + 1; j < 51; j++) {
+                    if (PlayerHand[i].at(0) != 'e') {
+                        if (PlayerHand[i].at(0) == PlayerHand[j].at(0)) {
+                            quads++;
+                            if (quads == 3) {
+                                match = PlayerHand[i].at(0);
+                                PlayerScore++;
+                                cout << "you have a match! +1 point" << endl;
+                                for (int m = 0; m < 52; m++) {
+                                    if (PlayerHand[m].at(0) == match)
+                                        PlayerHand[m] = "empty";
+                                }
+                                cout << endl << "Your new hand: " << endl;
+                                for (int i = 0; i < 52; i++) {
+                                    if (PlayerHand[i].at(0) != 'e')
+                                        cout << PlayerHand[i] << endl;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             break;
 
         case computer:
