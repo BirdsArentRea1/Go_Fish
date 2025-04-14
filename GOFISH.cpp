@@ -26,7 +26,7 @@ int main() {
     string match;
     bool isEmpty = false;
 
-    string suits[] = { "Hearts", "Clubs", "Diamonds", "Spades" };
+    string suits[] = { "Spades", "Hearts", "Diamonds", "Clubs" };
     string ranks[] = { "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
 
     string deck[52];
@@ -114,6 +114,12 @@ int main() {
                     }
                 }
             }
+            cout << endl << "Your current hand: " << endl;
+            for (int i = 0; i < 52; i++) {
+                if (PlayerHand[i] != "empty")
+                    cout << PlayerHand[i] << endl;
+            }
+
             break;
 
         case computer:
