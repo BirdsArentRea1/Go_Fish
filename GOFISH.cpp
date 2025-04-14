@@ -4,7 +4,7 @@
 #include <ctime>
 using namespace std;
 
-// start from slide 10
+// start from slide 17
 
 int main() {
     srand(time(NULL));
@@ -69,7 +69,7 @@ int main() {
         deck[i] = "empty";
     }
 
-    // turns
+    // Game loop
     cout << "Welcome to Go Fish!" << endl << endl;
     while (PlayerScore + ComputerScore < 13) {
         cout << endl << endl << endl << "************************************************************" << endl;
@@ -87,7 +87,9 @@ int main() {
         case player:
             cout << "Your hand: " << endl;
             for (int i = 0; i < 52; i++) {
-                if (PlayerHand[i].compare("empty") != 0)
+                if (PlayerHand[i].at(0) != 'e')
+                    sort(PlayerHand, PlayerHand + 51);
+                    sort(ComputerHand, ComputerHand + 51);
                     cout << PlayerHand[i] << endl;
             }
 
@@ -96,9 +98,10 @@ int main() {
         case computer:
             cout << "computer hand: " << endl;
             for (int i = 0; i < 52; i++) {
-                if (PlayerHand[i].compare("empty") != 0)
+                if (ComputerHand[i].at(0) != 'e')
                     cout << ComputerHand[i] << endl;
             }
+
 
             break;
         }
