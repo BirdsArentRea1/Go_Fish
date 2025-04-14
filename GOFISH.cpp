@@ -85,11 +85,11 @@ int main() {
 
         // print hands    
         case player:
+            sort(PlayerHand, PlayerHand + 51);
+            sort(ComputerHand, ComputerHand + 51);
             cout << "Your hand: " << endl;
             for (int i = 0; i < 52; i++) {
                 if (PlayerHand[i].at(0) != 'e')
-                    sort(PlayerHand, PlayerHand + 51);
-                    sort(ComputerHand, ComputerHand + 51);
                     cout << PlayerHand[i] << endl;
             }
 
