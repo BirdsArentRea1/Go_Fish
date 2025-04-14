@@ -4,7 +4,7 @@
 #include <ctime>
 using namespace std;
 
-// start from slide 17
+// start from slide 22
 
 int main() {
     srand(time(NULL));
@@ -23,7 +23,7 @@ int main() {
     enum TURNS { player, computer };
     int turn = player;
     int quads = 0;
-    char match;
+    string match;
     bool isEmpty = false;
 
     string suits[] = { "Hearts", "Clubs", "Diamonds", "Spades" };
@@ -42,14 +42,11 @@ int main() {
     // shuffle deck
     random_shuffle(&deck[0], &deck[52]);
 
-   
-
     // display shuffled deck 
     /*
     for (int i = 0; i < 52; i++) {
         cout << deck[i] << endl;
     } */
-    
 
     // create hands
     string PlayerHand[52];
@@ -67,8 +64,8 @@ int main() {
 
     // give computer 5 cards
     for (int i = 0; i < 5; i++) {
-        ComputerHand[i] = deck[i];
-        deck[i] = "empty";
+        ComputerHand[i] = deck[i + 5];
+        deck[i + 5] = "empty";
     }
 
     // Game loop
@@ -76,7 +73,7 @@ int main() {
     while (PlayerScore + ComputerScore < 13) {
         cout << endl << endl << endl << "************************************************************" << endl;
         cout << "Turn " << turnNumber << endl;
-        if (turn == player) cout << "It is your turn" << endl;
+        if (turn == player) cout << "Your turn" << endl;
         else cout << "computer's turn" << endl;
         cout << "you have " << PHandSize << " cards in your hand, and the computer has " << CHandSize << endl;
         cout << "The scores are You: " << PlayerScore << ", Computer: " << ComputerScore << endl << endl;
@@ -85,7 +82,7 @@ int main() {
 
         switch (turn) {
 
-        // print hands    
+            // print hands    
         case player:
             sort(PlayerHand, PlayerHand + 51);
             sort(ComputerHand, ComputerHand + 51);
@@ -95,14 +92,16 @@ int main() {
 
                 for (int j = i + 1; j < 51; j++) {
                     if (PlayerHand[i].at(0) != 'e') {
-                        if (PlayerHand[i].at(0) == PlayerHand[j].at(0)) {
+                        string rank_i = PlayerHand[i].substr(0, PlayerHand[i].find(" "));
+                        string rank_j = PlayerHand[j].substr(0, PlayerHand[j].find(" "));
+                        if (rank_i == rank_j) {
                             quads++;
                             if (quads == 3) {
-                                match = PlayerHand[i].at(0);
+                                match = rank_i;
                                 PlayerScore++;
                                 cout << "you have a match! +1 point" << endl;
                                 for (int m = 0; m < 52; m++) {
-                                    if (PlayerHand[m].at(0) == match)
+                                    if (PlayerHand[m].substr(0, PlayerHand[m].find(" ")) == match)
                                         PlayerHand[m] = "empty";
                                 }
                                 cout << endl << "Your new hand: " << endl;
@@ -118,12 +117,11 @@ int main() {
             break;
 
         case computer:
-            cout << "computer hand: " << endl;
+            cout << "Computer hand: " << endl;
             for (int i = 0; i < 52; i++) {
                 if (ComputerHand[i].at(0) != 'e')
                     cout << ComputerHand[i] << endl;
             }
-
 
             break;
         }
