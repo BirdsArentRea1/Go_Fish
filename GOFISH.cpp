@@ -84,8 +84,8 @@ int main() {
 
             // print hands    
         case player:
-            sort(PlayerHand, PlayerHand + 51);
-            sort(ComputerHand, ComputerHand + 51);
+            sort(PlayerHand, PlayerHand + 52);
+            sort(ComputerHand, ComputerHand + 52);
             cout << "Your hand: " << endl;
             for (int i = 0; i < 52; i++) {
                 quads = 0;
