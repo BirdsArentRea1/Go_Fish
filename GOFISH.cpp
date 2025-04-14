@@ -73,7 +73,7 @@ int main() {
     cout << "Welcome to Go Fish!" << endl << endl;
     while (PlayerScore + ComputerScore < 13) {
         cout << endl << endl << endl << "************************************************************" << endl;
-        cout << "Turn " turnNumber << endl;
+        cout << "Turn " << turnNumber << endl;
         if (turn == player) cout << "It is your turn" << endl;
         else cout << "computer's turn" << endl;
         cout << "you have " << PHandSize << " cards in your hand, and the computer has " << CHandSize << endl;
