@@ -86,7 +86,7 @@ int main() {
         case player:
             sort(PlayerHand, PlayerHand + 52);
             sort(ComputerHand, ComputerHand + 52);
-            cout << "Your hand: " << endl;
+            //cout << "Your hand: " << endl;
             for (int i = 0; i < 52; i++) {
                 quads = 0;
 
@@ -119,7 +119,35 @@ int main() {
                 if (PlayerHand[i] != "empty")
                     cout << PlayerHand[i] << endl;
             }
+            cout << endl << "What card are you looking for? " << endl;
+            cin >> input;
+            cout << input;
+            for (int i = 0; i < 52; i++) {
+                if (PlayerHand[i] == input)
+                    MatchFound = true;
+                //cout << " " << endl;
+            }
 
+            if (HasCard == false)
+                cout << " You can't ask for that card idiot" << endl;
+
+            for (int i = 0; i < 52; i++) {
+                if (MatchFound == false) {
+                    cout << "No match found. GO FISH!" << endl;
+                    system("pause");
+                    cout << "You grabbed a " << deck[NextDeckCard] << endl;
+                    PlayerHand[PHandSize] = deck[NextDeckCard];
+                    deck[NextDeckCard] = "empty";
+                    PHandSize++;
+                    NextDeckCard++;
+                    turn = computer;
+                    turnNumber++;
+                }
+                else
+                    MatchFound = false;
+            }
+
+            HasCard = false;
             break;
 
         case computer:
