@@ -151,15 +151,60 @@ int main() {
             break;
 
         case computer:
-            cout << "Computer hand: " << endl;
+            cout << endl << endl << "Computer turn!" << endl;
+
+            string pickedCard;
+
+            do {
+                computerPick = rand() % 52;
+            } while (ComputerHand[computerPick] == "empty");
+
+            pickedCard = ComputerHand[computerPick];
+
+
+            HasCard = false;
+
             for (int i = 0; i < 52; i++) {
-                if (ComputerHand[i].at(0) != 'e')
-                    cout << ComputerHand[i] << endl;
+                if (PlayerHand[i] != "empty") {
+                    cout << "The computer takes your " << PlayerHand[i] << "." << endl;
+                    ComputerHand[CHandSize++] = PlayerHand[i];
+                    PlayerHand[i] = "empty";
+                    PHandSize--;
+                    HasCard = true;
+                    break;
+                }
+            }
+
+            if (!HasCard) {
+                cout << "The computer goes fishing!" << endl;
+                if (deck[NextDeckCard] != "empty") {
+                    cout << "Computer draws: " << deck[NextDeckCard] << endl;
+                    ComputerHand[CHandSize++] = deck[NextDeckCard];
+                    deck[NextDeckCard] = "empty";
+                    NextDeckCard++;
+                }
+                else {
+                    cout << "Deck is empty. No more cards to draw." << endl;
+                }
+                turn = player;
+                turnNumber++;
             }
 
             break;
         }
-    }
+        cout << endl << "************************************************************" << endl;
+        cout << "Game Over!" << endl;
+        cout << "Final Scores - You: " << PlayerScore << ", Computer: " << ComputerScore << endl;
+
+        if (PlayerScore > ComputerScore) {
+            cout << "Congratulations! You won the game of Go Fish!" << endl;
+        }
+        else if (PlayerScore < ComputerScore) {
+            cout << "The computer has defeated you in Go Fish." << endl;
+        }
+        else {
+            cout << "Tie" << endl;
+        }
 
     return 0;
 }
